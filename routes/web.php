@@ -44,11 +44,11 @@ use App\Http\Controllers\Students\sslController as sslcz;
 |
 */
 
-Route::get('/register', [auth::class, 'signUpForm'])->name('register');
-Route::post('/register', [auth::class, 'signUpStore'])->name('register.store');
-Route::get('/login', [auth::class, 'signInForm'])->name('login');
-Route::post('/login', [auth::class, 'signInCheck'])->name('login.check');
-Route::get('/logout', [auth::class, 'signOut'])->name('logOut');
+// Route::get('/register', [auth::class, 'signUpForm'])->name('register');
+// Route::post('/register', [auth::class, 'signUpStore'])->name('register.store');
+Route::get('admin/login', [auth::class, 'signInForm'])->name('login');
+Route::post('admin/login', [auth::class, 'signInCheck'])->name('login.check');
+Route::get('admin/logout', [auth::class, 'signOut'])->name('logOut');
 
 
 Route::middleware(['checkauth'])->prefix('admin')->group(function () {
