@@ -11,11 +11,11 @@
                     <div class="row no-gutters">
                         <div class="col-xl-12">
                             <div class="auth-form">
-                                <h4 class="text-center mb-4">Sign in your account</h4>
+                                <h4 class="text-center mb-4">Admin Dashboard</h4>
                                 <form action="{{route('login.check')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label><strong>Email or Phone</strong></label>
+                                        <label><strong>Email Address</strong></label>
                                         <input type="text" class="form-control" value="{{old('username')}}"
                                             name="username" id="username">
                                         @if($errors->has('username'))
@@ -35,16 +35,15 @@
                                             <div class="custom-control custom-checkbox ml-1">
                                                 <input type="checkbox" class="custom-control-input"
                                                     id="basic_checkbox_1">
-                                                <label class="custom-control-label" for="basic_checkbox_1">Remember
-                                                    my preference</label>
+                                                <label class="custom-control-label" for="basic_checkbox_1">Stay logged in</label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="display: none !important">
                                             <a href="page-forgot-password.html">Forgot Password?</a>
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-block">Sign me in</button>
+                                        <button type="submit" class="btn btn-primary btn-block">LOG IN</button>
                                     </div>
                                 </form>
                                 {{-- <div class="new-account mt-3">
