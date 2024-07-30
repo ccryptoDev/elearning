@@ -29,12 +29,12 @@ class AuthenticationController extends Controller
             $user->role_id = 4;
             // dd($request->all()); 
             if ($user->save())
-                return redirect('login')->with('success', 'Successfully Registered');
+                return redirect('admin/login')->with('success', 'Successfully Registered');
             else
-                return redirect('login')->with('danger', 'Please Try Again');
+                return redirect('admin/login')->with('danger', 'Please Try Again');
         } catch (Exception $e) {
             dd($e);
-            return redirect('login')->with('danger', 'Please Try Again');
+            return redirect('admin/login')->with('danger', 'Please Try Again');
         }
     }
 
@@ -53,14 +53,14 @@ class AuthenticationController extends Controller
                         $this->setSession($user);
                         return redirect()->route('dashboard')->with('success', 'Successfully Logged In');
                     } else
-                        return redirect()->route('login')->with('error', 'Username or Password is wrong!');
+                        return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
                 } else
-                    return redirect()->route('login')->with('error', 'You are not an active user! Please contact to Authority');
+                    return redirect()->route('admin/login')->with('error', 'You are not an active user! Please contact to Authority');
             } else
-                return redirect()->route('login')->with('error', 'Username or Password is wrong!');
+                return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
         } catch (Exception $e) {
             // dd($e);
-            return redirect()->route('login')->with('error', 'Username or Password is wrong!');
+            return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
         }
     }
 
