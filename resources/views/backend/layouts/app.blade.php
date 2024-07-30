@@ -368,6 +368,7 @@
     <script src="{{asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
     <script src="{{asset('js/custom.min.js')}}"></script>
     <script src="{{asset('js/dlabnav-init.js')}}"></script>
+    <!-- End Required vendors -->
 
     <!-- Svganimation scripts -->
     <script src="{{asset('vendor/svganimation/vivus.min.js')}}"></script>
@@ -380,17 +381,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     <script>
         @if(Session::has('success'))  
-    				toastr.success("{{ Session::get('success') }}");  
-    		@endif  
-    		@if(Session::has('info'))  
-    				toastr.info("{{ Session::get('info') }}");  
-    		@endif  
-    		@if(Session::has('warning'))  
-    				toastr.warning("{{ Session::get('warning') }}");  
-    		@endif  
-    		@if(Session::has('error'))  
-    				toastr.error("{{ Session::get('error') }}");  
-    		@endif  
+            toastr.success("{{ Session::get('success') }}");  
+        @endif  
+        @if(Session::has('info'))  
+            toastr.info("{{ Session::get('info') }}");  
+        @endif  
+        @if(Session::has('warning'))  
+            toastr.warning("{{ Session::get('warning') }}");  
+        @endif  
+        @if(Session::has('error'))  
+            toastr.error("{{ Session::get('error') }}");  
+        @endif  
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     {!! Toastr::message() !!}
