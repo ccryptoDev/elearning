@@ -64,9 +64,9 @@
                                             <tr>
                                                 <td><img class="rounded-circle" width="35" height="35"
                                                         src="{{asset('uploads/users/'.$d->image)}}" alt=""></td>
-                                                <td><strong>{{$d->name_en}}</strong></td>
+                                                <td><strong>{{$d->name}}</strong></td>
                                                 <td>{{$d->email}}</td>
-                                                <td>{{$d->contact_en}}</td>
+                                                <td>{{$d->phone}}</td>
                                                 <td>{{$d->role?->name}}</td>
                                                 <td>
                                                     <span class="badge {{$d->full_access==1?"

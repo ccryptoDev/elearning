@@ -39,44 +39,25 @@ class InstructorController extends Controller
     public function store(AddNewRequest $request)
     {
         try {
-            DB::beginTransaction();
+            // DB::beginTransaction();
             $instructor = new Instructor;
-            $instructor->name_en = $request->fullName_en;
-            $instructor->name_bn = $request->fullName_bn;
-            $instructor->contact_en = $request->contactNumber_en;
-            $instructor->contact_bn = $request->contactNumber_bn;
+            $instructor->name = $request->fullName;
+            $instructor->phone = $request->contactNumber;
             $instructor->email = $request->emailAddress;
             $instructor->role_id = $request->roleId;
             $instructor->bio = $request->bio;
-            $instructor->designation = $request->designation;
-            $instructor->title = $request->title;
             $instructor->status = $request->status;
             $instructor->password = Hash::make($request->password);
-            $instructor->language = 'en';
-            $instructor->access_block = $request->access_block;
             if ($request->hasFile('image')) {
-                $imageName = (Role::find($request->roleId)->name) . '_' .  $request->fullName_en . '_' . rand(999, 111) .  '.' . $request->image->extension();
+                $imageName = (Role::find($request->roleId)->name) . '_' .  $request->fullName . '_' . rand(999, 111) .  '.' . $request->image->extension();
                 $request->image->move(public_path('uploads/users'), $imageName);
                 $instructor->image = $imageName;
             }
 
             if ($instructor->save()) {
-                $user = new User;
-                $user->instructor_id = $instructor->id;
-                $user->name_en = $request->fullName_en;
-                $user->email = $request->emailAddress;
-                $user->contact_en = $request->contactNumber_en;
-                $user->role_id = $request->roleId;
-                $user->status = $request->status;
-                $user->password = Hash::make($request->password);
-                if (isset($imageName)) {
-                    $user->image = $imageName; // Save the image name in the users table
-                }
-                if ($user->save()) {
-                    DB::commit();
-                    $this->notice::success('Successfully saved');
-                    return redirect()->route('instructor.index');
-                }
+                // DB::commit();
+                $this->notice::success('Successfully saved');
+                return redirect()->route('instructor.index');
             } else
                 return redirect()->back()->withInput()->with('error', 'Please try again');
         } catch (Exception $e) {
@@ -117,21 +98,15 @@ class InstructorController extends Controller
     {
         try {
             $instructor = Instructor::findOrFail(encryptor('decrypt', $id));
-            $instructor->name_en = $request->fullName_en;
-            $instructor->name_bn = $request->fullName_bn;
-            $instructor->contact_en = $request->contactNumber_en;
-            $instructor->contact_bn = $request->contactNumber_bn;
+            $instructor->name = $request->fullName;
+            $instructor->phone = $request->contactNumber;
             $instructor->email = $request->emailAddress;
             $instructor->role_id = $request->roleId;
             $instructor->bio = $request->bio;
-            $instructor->designation = $request->designation;
-            $instructor->title = $request->title;
             $instructor->status = $request->status;
             $instructor->password = Hash::make($request->password);
-            $instructor->language = 'en';
-            $instructor->access_block = $request->access_block;
             if ($request->hasFile('image')) {
-                $imageName = (Role::find($request->roleId)->name) . '_' .  $request->fullName_en . '_' . rand(999, 111) .  '.' . $request->image->extension();
+                $imageName = (Role::find($request->roleId)->name) . '_' .  $request->fullName . '_' . rand(999, 111) .  '.' . $request->image->extension();
                 $request->image->move(public_path('uploads/users'), $imageName);
                 $instructor->image = $imageName;
             }
@@ -139,9 +114,9 @@ class InstructorController extends Controller
             if ($instructor->save()) {
                 $user = User::where('instructor_id', $instructor->id)->first();
                 $user->instructor_id = $instructor->id;
-                $user->name_en = $request->fullName_en;
+                $user->name = $request->fullName;
                 $user->email = $request->emailAddress;
-                $user->contact_en = $request->contactNumber_en;
+                $user->phone = $request->contactNumber;
                 $user->role_id = $request->roleId;
                 $user->status = $request->status;
                 $user->password = Hash::make($request->password);
