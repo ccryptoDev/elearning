@@ -239,7 +239,7 @@
                     </li>
                     <li><a class="" href="{{route('event.index')}}" aria-expanded="false">
                             <i class="las la-icons"></i>
-                            <span class="nav-text">Events</span>
+                            <span class="nav-text">Articles</span>
                         </a>
                     </li>
                     <li><a class="" href="{{route('coupon.index')}}" aria-expanded="false">
@@ -247,7 +247,7 @@
                             <span class="nav-text">Coupons</span>
                         </a>
                     </li>
-                    {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="las la-tasks"></i>
                             <span class="nav-text">Quizzes</span>
                         </a>
@@ -284,9 +284,8 @@
                         <ul aria-expanded="false">
                             <li><a href="javascript:void()"><i class="las la-money-bill"></i>Course Fees</a></li>
                             <li><a href="javascript:void()"><i class="lab la-gg-circle"></i>Subscription Fees</a></li>
-                            <li><a href="{{route('coupon.index')}}"><i class="las la-tags"></i>Coupons</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -365,6 +364,10 @@
     <!-- Required vendors -->
     <script src="{{asset('vendor/global/global.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropify/0.2.2/css/dropify.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropify/0.2.2/js/dropify.min.js"></script>
+
     <script src="{{asset('js/custom.min.js')}}"></script>
     <script src="{{asset('js/dlabnav-init.js')}}"></script>
     <!-- End Required vendors -->
@@ -378,6 +381,7 @@
     {{-- TOASTER --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
     <script>
         @if(Session::has('success'))  
             toastr.success("{{ Session::get('success') }}");  
