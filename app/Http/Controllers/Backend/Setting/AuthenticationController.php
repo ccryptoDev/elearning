@@ -46,7 +46,7 @@ class AuthenticationController extends Controller
     public function signInCheck(SignInRequest $request)
     {
         try {
-            $user = User::where('contact_en', $request->username)->orWhere('email', $request->username)->first();
+            $user = User::where('phone', $request->username)->orWhere('email', $request->username)->first();
             if ($user) {
                 if ($user->status == 1) {
                     if (Hash::check($request->password, $user->password)) {
