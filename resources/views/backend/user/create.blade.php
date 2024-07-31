@@ -41,40 +41,25 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="userName_en"
-                                            value="{{old('userName_en')}}">
+                                        <input type="text" class="form-control" name="userName"
+                                            value="{{old('userName')}}">
                                     </div>
-                                    @if($errors->has('userName_en'))
-                                    <span class="text-danger"> {{ $errors->first('userName_en') }}</span>
+                                    @if($errors->has('userName'))
+                                    <span class="text-danger"> {{ $errors->first('userName') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">নাম (বাংলায়)</label>
-                                        <input type="text" class="form-control" name="userName_bn"
-                                            value="{{old('userName_bn')}}">
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" name="contactNumber_en"
-                                            value="{{old('contactNumber_en')}}">
+                                        <input type="tel" class="form-control" name="contactNumber"
+                                            value="{{old('contactNumber')}}">
                                     </div>
-                                    @if($errors->has('contactNumber_en'))
-                                    <span class="text-danger"> {{ $errors->first('contactNumber_en') }}</span>
+                                    @if($errors->has('contactNumber'))
+                                    <span class="text-danger"> {{ $errors->first('contactNumber') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">ফোন নাম্বার (বাংলায়)</label>
-                                        <input type="tel" class="form-control" name="contactNumber_bn"
-                                            value="{{old('contactNumber_bn')}}">
-                                    </div>
-                                    @if($errors->has('contactNumber_bn'))
-                                    <span class="text-danger"> {{ $errors->first('contactNumber_bn') }}</span>
-                                    @endif
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
@@ -85,6 +70,7 @@
                                     <span class="text-danger"> {{ $errors->first('emailAddress') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Role</label>
@@ -101,6 +87,7 @@
                                     <span class="text-danger"> {{ $errors->first('roleId') }}</span>
                                     @endif
                                 </div>
+                                
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Full Access</label>
@@ -110,6 +97,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Status</label>
@@ -119,6 +107,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Password</label>
@@ -128,14 +117,16 @@
                                     <span class="text-danger"> {{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="form-label">Image</label>
                                     <div class="form-group fallback w-100">
                                         <input type="file" class="dropify" data-default-file="" name="image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Create</button>
                                     <button type="submit" class="btn btn-light">Cencel</button>
                                 </div>
                             </div>

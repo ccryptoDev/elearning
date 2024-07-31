@@ -53,7 +53,6 @@
                                                 <th>{{__('Name')}}</th>
                                                 <th>{{__('Email')}}</th>
                                                 <th>{{__('Contact')}}</th>
-                                                <th>{{__('Designation')}}</th>
                                                 <th>{{__('Status')}}</th>
                                                 <th>{{__('Action')}}</th>
                                             </tr>
@@ -65,10 +64,9 @@
                                                     <img class="rounded-circle" width="35" height="35"
                                                         src="{{asset('uploads/users/'.$d->image)}}" alt="">
                                                 </td>
-                                                <td><strong>{{$d->name_en}}</strong></td>
+                                                <td><strong>{{$d->name}}</strong></td>
                                                 <td>{{$d->email}}</td>
-                                                <td>{{$d->contact_en}}</td>
-                                                <td>{{$d->designation}}</td>
+                                                <td>{{$d->phone}}</td>
                                                 <td>
                                                     <span class="badge {{$d->status==1?"
                                                         badge-success":"badge-danger"}}">@if($d->status==1){{__('Active')}}
