@@ -12,7 +12,7 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <h4 class="text-center mb-4">Admin Dashboard</h4>
-                                <form action="{{route('login.check')}}" method="POST">
+                                <form action="{{route('admin.check')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label><strong>Email Address</strong></label>

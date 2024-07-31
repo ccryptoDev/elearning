@@ -18,14 +18,14 @@ class checkAuth
     public function handle(Request $request, Closure $next)
     {
         if (!Session::has('userId') || Session::has('userId') == null) {
-            return redirect()->route('logOut');
+            return redirect()->route('admin.logout');
         } else {
             $user = User::where('status', 1)->where('id', currentUserId())->first();
             if (!$user)
-                return redirect()->route('logOut'); 
+                return redirect()->route('admin.logout'); 
             else
                 return $next($request);
         }
-        return redirect()->route('logOut');
+        return redirect()->route('admin.logout');
     }
 }
