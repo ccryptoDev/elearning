@@ -19,14 +19,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Edit Event</h4>
+                    <h4>Edit Article</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('event.index')}}">Events</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Event</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('event.index')}}">Articles</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Article</a></li>
                 </ol>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="col-xl-12 col-xxl-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Event Info</h5>
+                        <h5 class="card-title">Article Info</h5>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('event.update', $event->id) }}" method="post"
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Event Title</label>
+                                        <label class="form-label">Title</label>
                                         <input type="text" class="form-control" name="title"
                                             value="{{old('title', $event->title)}}">
                                     </div>
@@ -53,9 +53,10 @@
                                     <span class="text-danger"> {{$errors->first('title')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Location Type</label>
+                                        <label class="form-label">Type</label>
                                         <input type="text" class="form-control" name="location"
                                             value="{{old('location', $event->location)}}">
                                     </div>
@@ -63,6 +64,7 @@
                                     <span class="text-danger"> {{$errors->first('location')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Topic</label>
@@ -73,6 +75,7 @@
                                     <span class="text-danger"> {{$errors->first('topic')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Hosted By</label>
@@ -83,6 +86,7 @@
                                     <span class="text-danger"> {{$errors->first('hosted_by')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Description</label>
@@ -93,9 +97,10 @@
                                     <span class="text-danger"> {{$errors->first('description')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Event Goal</label>
+                                        <label class="form-label">Article Goal</label>
                                         <textarea name="goal"
                                             class="form-control">{{old('goal', $event->goal)}}</textarea>
                                         @if($errors->has('goal'))
@@ -103,6 +108,7 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Date</label>
@@ -113,14 +119,16 @@
                                     <span class="text-danger"> {{$errors->first('date')}}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Image</label>
                                         <input type="file" class="form-control" name="image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                     <button type="submit" class="btn btn-light">Cancel</button>
                                 </div>
                             </div>
