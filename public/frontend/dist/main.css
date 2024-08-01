@@ -21134,8 +21134,8 @@ header #search-nav.appear {
 }
 
 .footer__wrapper {
-  margin-bottom: 50px;
-  max-width: 65%;
+  /* margin-bottom: 50px;
+  max-width: 65%; */
 }
 
 .footer__wrapper_logo {
