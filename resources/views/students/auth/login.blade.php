@@ -10,10 +10,10 @@
             <div class="col-xl-5 order-2 order-xl-0">
                 <div class="signup-area-textwrapper">
                     <h2 class="font-title--md mb-0">Sign in</h2>
-                    <p class="mt-2 mb-lg-4 mb-3">Don't have account? <a href="{{route('studentRegister')}}"
+                    <p class="mt-2 mb-lg-4 mb-3">Don't have account? <a href="{{route('user.register')}}"
                             class="text-black-50">Sign
                             up</a></p>
-                    <form action="{{route('studentLogin.check','studentdashboard')}}" method="POST">
+                    <form action="{{route('user.check','studentdashboard')}}" method="POST">
                         @csrf
                         <div class="form-element">
                             <label for="email">Email</label>

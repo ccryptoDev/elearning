@@ -35,14 +35,14 @@
                 </div>
                 <div class="nav__buttons">
                     @auth
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: inline;">
                             @csrf
                             <div id="logout-button" class="nav__profile"><span>להתנתק</span></div>
                         </form>
                         {{-- <a class="nav__profile" href="{{ route('logout') }}"><span>להתנתק</span></a> --}}
                         <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
                     @else
-                        <a class="nav__profile" href="{{ route('login') }}"><span>התחברות</span></a>
+                        <a class="nav__profile" href="{{ route('user.login') }}"><span>התחברות</span></a>
                     @endauth
                     <a class="btn" href="">להתחיל</a>
                 </div>
@@ -129,12 +129,12 @@
                         <div class="dropdown-content">
                             <a href="{{route('student_profile')}}">Profile</a>
                             <a href="{{route('studentdashboard')}}">Dashboard</a>
-                            <a href="{{route('studentlogOut')}}" class="text-danger">Logout</a>
+                            <a href="{{route('user.logout')}}" class="text-danger">Logout</a>
                         </div>
                     </div>
                     @else
-                    <a href="{{route('studentLogin')}}" class="button button--text">Sign in</a>
-                    <a href="{{route('studentRegister')}}" class="button button--dark">Sign Up</a>
+                    <a href="{{route('user.login')}}" class="button button--text">Sign in</a>
+                    <a href="{{route('user.register')}}" class="button button--dark">Sign Up</a>
                     @endif
                 </div>
             </div>

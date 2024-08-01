@@ -18,14 +18,14 @@ class checkStudent
     public function handle(Request $request, Closure $next)
     {
         if (!Session::has('userId') || Session::has('userId') == null) {
-            return redirect()->route('studentlogOut');
+            return redirect()->route('user.logout');
         } else {
             $user = Student::where('status', 1)->where('id', currentUserId())->exists();
             if (!$user)
-                return redirect()->route('studentlogOut');
+                return redirect()->route('user.logout');
             else
                 return $next($request);
         }
-        return redirect()->route('studentlogOut');
+        return redirect()->route('user.logout');
     }
 }

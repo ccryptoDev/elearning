@@ -83,11 +83,11 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function () {
 
 
 /* students controllers */
-Route::get('/student/register', [sauth::class, 'signUpForm'])->name('studentRegister');
-Route::post('/student/register/{back_route}', [sauth::class, 'signUpStore'])->name('studentRegister.store');
-Route::get('/student/login', [sauth::class, 'signInForm'])->name('studentLogin');
-Route::post('/student/login/{back_route}', [sauth::class, 'signInCheck'])->name('studentLogin.check');
-Route::get('/student/logout', [sauth::class, 'signOut'])->name('studentlogOut');
+Route::get('/user/register', [sauth::class, 'signUpForm'])->name('user.register');
+Route::post('/user/register/{back_route}', [sauth::class, 'signUpStore'])->name('user.store');
+Route::get('/user/login', [sauth::class, 'signInForm'])->name('user.login');
+Route::post('/user/login/{back_route}', [sauth::class, 'signInCheck'])->name('user.check');
+Route::get('/user/logout', [sauth::class, 'signOut'])->name('user.logout');
 
 Route::middleware(['checkstudent'])->prefix('students')->group(function () {
     Route::get('/dashboard', [studashboard::class, 'index'])->name('studentdashboard');
