@@ -35,7 +35,7 @@
                 </div>
                 <div class="nav__buttons">
                     @auth
-                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: inline;">
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: inline;">
                             @csrf
                             <div id="logout-button" class="nav__profile"><span>להתנתק</span></div>
                         </form>
@@ -45,6 +45,11 @@
                         <a class="nav__profile" href="{{ route('user.login') }}"><span>התחברות</span></a>
                     @endauth
                     <a class="btn" href="">להתחיל</a>
+                    @if (Auth::check())
+                        <p>Authenticated</p>
+                    @else
+                        <p>Not Authenticated</p>
+                    @endif
                 </div>
                 <button class="nav__burger_link"></button>
                 <button class="nav__burger_close"></button>

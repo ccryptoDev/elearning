@@ -18,30 +18,39 @@
                         <span>אין לך חשבון?</span>
                     </div>
                 </div>
-                
-                <form action="{{ route('user.login') }}" onsubmit = "return(validate());" novalidate class="login__form" method="POST">
+
+                {{-- <form action="{{ route('user.check', 'home') }}" onsubmit = "return(validate());" novalidate class="login__form" method="POST"> --}}
+                <form action="{{ route('user.check', 'home') }}" novalidate class="login__form" method="POST">
                     @csrf
                     <div class="login__form__login">
                         <input type="text" required class="login__form__input login__form__input_login  @error('email') login__form__error @enderror" name="email"
                                placeholder="אימייל" value="{{old('email')}}">
                         <span class="login__form__err">שְׁגִיאָה</span>
+                        @if($errors->has('email'))
+                            <small class="d-block text-danger">{{$errors->first('email')}}</small>
+                        @endif
                     </div>
-                    @error('email')
+                    {{-- @error('email')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @enderror --}}
+
                     <div class="login__form__password">
                         <button type="button" class="login__form__password__show"></button>
                         <input type="password" required class="login__form__input login__form__input_password  @error('password') login__form__error @enderror"
                                name="password" placeholder="סיסמה">
                         <span class="login__form__err">שְׁגִיאָה</span>
+                        @if($errors->has('password'))
+                            <small class="d-block text-danger">{{$errors->first('password')}}</small>
+                        @endif
                     </div>
-                    @error('password')
+                    {{-- @error('password')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @enderror --}}
+
                     <div class="login__form__wrapper">
                         <div class="checkbox">
                             <label class="custom-checkbox">
