@@ -16,16 +16,16 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except([
-            'about',
-            'master',
-            'blog',
-            'article',
-            'master_practitioner',
-            'practitioner'
-        ]);
+        // $this->middleware('auth')->except([
+        //     'about',
+        //     'master',
+        //     'blog',
+        //     'article',
+        //     'master_practitioner',
+        //     'practitioner'
+        // ]);
     }
-    
+
     public function index()
     {
         $course = Course::get();
