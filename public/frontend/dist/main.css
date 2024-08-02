@@ -14793,7 +14793,8 @@ html {
   .container-md,
   .container-lg,
   .container-xl {
-    max-width: 1170px;
+    /* max-width: 1170px; */
+    max-width: 100%;
   }
 }
 
@@ -21134,8 +21135,8 @@ header #search-nav.appear {
 }
 
 .footer__wrapper {
-  margin-bottom: 50px;
-  max-width: 65%;
+  /* margin-bottom: 50px;
+  max-width: 65%; */
 }
 
 .footer__wrapper_logo {

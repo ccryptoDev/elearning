@@ -9,6 +9,23 @@ use App\Models\CourseCategory;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // $this->middleware('auth')->except([
+        //     'about',
+        //     'master',
+        //     'blog',
+        //     'article',
+        //     'master_practitioner',
+        //     'practitioner'
+        // ]);
+    }
+
     public function index()
     {
         $course = Course::get();

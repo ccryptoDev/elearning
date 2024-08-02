@@ -27,6 +27,10 @@ use App\Http\Controllers\WatchCourseController as watchCourse;
 use App\Http\Controllers\LessonController as lesson;
 use App\Http\Controllers\EnrollmentController as enrollment;
 use App\Http\Controllers\EventController as event;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
 
 /* students */
 use App\Http\Controllers\Students\AuthController as sauth;
@@ -83,11 +87,11 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function () {
 
 
 /* students controllers */
-Route::get('/student/register', [sauth::class, 'signUpForm'])->name('studentRegister');
-Route::post('/student/register/{back_route}', [sauth::class, 'signUpStore'])->name('studentRegister.store');
-Route::get('/student/login', [sauth::class, 'signInForm'])->name('studentLogin');
-Route::post('/student/login/{back_route}', [sauth::class, 'signInCheck'])->name('studentLogin.check');
-Route::get('/student/logout', [sauth::class, 'signOut'])->name('studentlogOut');
+Route::get('/user/register', [sauth::class, 'signUpForm'])->name('user.register');
+Route::post('/user/register/{back_route}', [sauth::class, 'signUpStore'])->name('user.store');
+Route::get('/user/login', [sauth::class, 'signInForm'])->name('user.login');
+Route::post('/user/login/{back_route}', [sauth::class, 'signInCheck'])->name('user.check');
+Route::get('/user/logout', [sauth::class, 'signOut'])->name('user.logout');
 
 Route::middleware(['checkstudent'])->prefix('students')->group(function () {
     Route::get('/dashboard', [studashboard::class, 'index'])->name('studentdashboard');
@@ -100,9 +104,17 @@ Route::middleware(['checkstudent'])->prefix('students')->group(function () {
     Route::post('/payment/ssl/submit', [sslcz::class, 'store'])->name('payment.ssl.submit');
 });
 
+// password
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 // frontend pages
-Route::get('home', [HomeController::class, 'index'])->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware(['checkstudent'])->group(function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+});
 Route::get('searchCourse', [SearchCourseController::class, 'index'])->name('searchCourse'); 
 Route::get('courseDetails/{id}', [course::class, 'frontShow'])->name('courseDetails');
 Route::get('watchCourse/{id}', [watchCourse::class, 'watchCourse'])->name('watchCourse');

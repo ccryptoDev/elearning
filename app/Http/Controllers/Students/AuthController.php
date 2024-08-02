@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use App\Models\Student;
+use App\Models\User;
 use App\Http\Requests\Students\Auth\SignUpRequest;
 use App\Http\Requests\Students\Auth\SignInRequest;
 use Illuminate\Support\Facades\Hash;
@@ -18,16 +20,17 @@ class AuthController extends Controller
         return view('students.auth.register');
     }
 
-    public function signUpStore(SignUpRequest $request,$back_route)
+    public function signUpStore(SignUpRequest $request, $back_route)
     {
         try {
-            $student = new Student;
-            $student->name_en = $request->name;
-            $student->email = $request->email;
-            $student->password = Hash::make($request->password);
-            if ($student->save()){
-                $this->setSession($student);
-                return redirect()->route($back_route)->with('success', 'Successfully Logged In');
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role_id = 4;
+            $user->status = 1;
+            $user->password = Hash::make($request->password);
+            if ($user->save()){
+                return redirect()->route($back_route)->with('success', 'Successfully registered');
             }
         } catch (Exception $e) {
             //dd($e);
@@ -40,36 +43,54 @@ class AuthController extends Controller
         return view('students.auth.login');
     }
 
-    public function signInCheck(SignInRequest $request,$back_route)
+    public function signInCheck(SignInRequest $request, $back_route)
     {
         try {
-            $student = Student::Where('email', $request->email)->first();
-            if ($student) {
-                if ($student->status == 1) {
-                    if (Hash::check($request->password, $student->password)) {
-                        $this->setSession($student);
-                        return redirect()->route($back_route)->with('success', 'Successfully Logged In');
-                    } else
-                        return redirect()->back()->with('error', 'Username or Password is wrong!');
-                } else
-                    return redirect()->back()->with('error', 'You are not an active user! Please contact to Authority');
-            } else
+            // $student = Student::Where('email', $request->email)->first();
+
+            // if ($student) {
+            //     if ($student->status == 1) {
+            //         if (Hash::check($request->password, $student->password)) {
+            //             $this->setSession($student);
+            //             return redirect()->route('home')->with('success', 'Successfully Logged In');
+            //         } else
+            //             return redirect()->back()->with('error', 'Username or Password is wrong!');
+            //     } else
+            //         return redirect()->back()->with('error', 'You are not an active user! Please contact to Authority');
+            // } else
+            //     return redirect()->back()->with('error', 'Username or Password is wrong!');
+
+            // Validate the credentials
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+                'status' => 1 // Ensure the user is active
+            ];
+
+            // Attempt to authenticate the user
+            if (Auth::attempt($credentials)) {
+                // Authentication passed
+                $user = Auth::user();
+                $this->setSession($user);
+                return redirect()->route($back_route)->with('success', 'Successfully Logged In');
+            } else {
                 return redirect()->back()->with('error', 'Username or Password is wrong!');
+            }
         } catch (Exception $e) {
             //dd($e);
             return redirect()->back()->with('error', 'Username or Password is wrong!');
         }
     }
 
-    public function setSession($student)
+    public function setSession($user)
     {
         return request()->session()->put(
             [
-                'userId' => encryptor('encrypt', $student->id),
-                'userName' => encryptor('encrypt', $student->name_en),
-                'emailAddress' => encryptor('encrypt', $student->email),
+                'userId' => encryptor('encrypt', $user->id),
+                'userName' => encryptor('encrypt', $user->name),
+                'emailAddress' => encryptor('encrypt', $user->email),
                 'studentLogin' => 1,
-                'image' => $student->image ?? 'No Image Found' 
+                'image' => $user->image ?? 'No Image Found' 
             ]
         );
     }
@@ -77,6 +98,6 @@ class AuthController extends Controller
     public function signOut()
     {
         request()->session()->flush();
-        return redirect()->route('studentLogin')->with('danger', 'Succesfully Logged Out');
+        return redirect()->route('user.login')->with('danger', 'Succesfully Logged Out');
     }
 }
