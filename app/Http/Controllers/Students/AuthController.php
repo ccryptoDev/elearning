@@ -90,14 +90,25 @@ class AuthController extends Controller
                 'userName' => encryptor('encrypt', $user->name),
                 'emailAddress' => encryptor('encrypt', $user->email),
                 'studentLogin' => 1,
-                'image' => $user->image ?? 'No Image Found' 
+                'image' => $user->image ?? 'No_Profile_Image.jpg' 
             ]
         );
     }
 
     public function signOut()
     {
-        request()->session()->flush();
+        $keys = [
+            'userId',
+            'userName',
+            'emailAddress',
+            'studentLogin',
+            'image',
+        ];
+    
+        foreach ($keys as $key) {
+            request()->session()->forget($key);
+        }
+
         return redirect()->route('user.login')->with('danger', 'Succesfully Logged Out');
     }
 }
