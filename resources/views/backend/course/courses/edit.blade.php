@@ -192,11 +192,14 @@
                                     @endif
                                 </div>
 
+                                @php
+                                    $start_from = old('start_from', $course->start_from ? \Illuminate\Support\Carbon::parse($course->start_from)->format('Y-m-d') : '');
+                                @endphp
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Start From</label>
                                         <input type="date" class="form-control" name="start_from"
-                                            value="{{old('start_from')}}">
+                                            value="{{old('start_from', $start_from)}}">
                                     </div>
                                     @if($errors->has('start_from'))
                                     <span class="text-danger"> {{ $errors->first('start_from',
