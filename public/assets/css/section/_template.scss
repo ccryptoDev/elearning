@@ -197,6 +197,9 @@ body{
         @media screen and (max-width: 1024px) {
             display: none;
         }
+        .dropdown-content a {
+            @include font(400,16,24,24,32);
+        }
     }
     &__profile{
         display: inline-flex;
