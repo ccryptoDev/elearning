@@ -21,7 +21,7 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('course.index')}}">Instructors</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('course.index')}}">Courses</a></li>
                     <li class="breadcrumb-item active"><a href="{{route('course.index')}}">All Course</a></li>
                 </ol>
             </div>
@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">All Course List </h4>
-                                <a href="{{route('enrollment.create')}}" class="btn btn-primary">+ Add new</a>
+                                <a href="{{route('course.create')}}" class="btn btn-primary">+ Add new</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -53,13 +53,15 @@
                                         <tbody>
                                             @forelse ($course as $d)
                                             <tr>
-                                                <td><img class="img fluid" width="100" src="{{asset('uploads/courses/'.$d->image)}}" alt="">
-                                            </td>
-                                                <td><strong>{{$d->title_en}}</strong></td>
-                                                <td><strong>{{$d->instructor?->name_en}}</strong></td>
+                                                <td>
+                                                    <img class="img fluid" width="100" src="{{asset('uploads/courses/'.$d->image)}}" alt="">
+                                                </td>
+                                                <td><strong>{{$d->title}}</strong></td>
+                                                <td><strong>{{$d->instructor?->name}}</strong></td>
+                                                {{-- @dump($d->instructor) --}}
                                                 <td><strong>{{$d->courseCategory?->category_name}}</strong>
                                                 </td>
-                                                <td><strong>{{$d->price?'৳'.$d->price:'Free'}}</strong></td>
+                                                <td><strong>{{$d->price? '$'.$d->price : 'Free'}}</strong></td>
                                                 <td>
                                                     <span class="badge 
                                                     @if($d->status == 0) badge-warning 

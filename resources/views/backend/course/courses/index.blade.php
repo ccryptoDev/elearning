@@ -21,7 +21,7 @@
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('course.index')}}">Instructors</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('course.index')}}">Courses</a></li>
                     <li class="breadcrumb-item active"><a href="{{route('course.index')}}">All Course</a></li>
                 </ol>
             </div>
@@ -75,7 +75,7 @@
                                                 </li>
                                                 <li class="list-group-item px-0 d-flex justify-content-between">
                                                     <span class="mb-0">Instructor :</span>
-                                                    <strong>{{$d->instructor?->name_en}}</strong>
+                                                    <strong>{{$d->instructor?->name}}</strong>
                                                 </li>
                                                 <li class="list-group-item px-0 d-flex justify-content-between">
                                                     <span class="mb-0">Category :</span>
@@ -83,7 +83,7 @@
                                                 </li>
                                                 <li class="list-group-item px-0 d-flex justify-content-between">
                                                     <span class="mb-0">Price :</span>
-                                                    <strong>{{$d->price?'৳'.$d->price:'Free'}}</strong>
+                                                    <strong>{{$d->price ? '$'.$d->price : 'Free'}}</strong>
                                                 </li>
                                                 <li class="list-group-item px-0 d-flex justify-content-between">
                                                     <span class="mb-0">Status :</span>
@@ -100,7 +100,7 @@
                                                 </li>
                                             </ul>
                                             <a class="btn btn-outline-primary btn-rounded mt-3 px-4"
-                                                href="about-student.html">Read More</a>
+                                                href="#">Read More</a>
                                         </div>
                                     </div>
                                 </div>

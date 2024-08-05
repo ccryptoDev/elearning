@@ -36,62 +36,52 @@
                     </div>
                     <div class="card-body">
                         @if(fullAccess())
-                        <form action="{{route('course.updateforAdmin',encryptor('encrypt', $course->id))}}" method="post"
+                        <form action="{{route('course.updateforAdmin', encryptor('encrypt', $course->id))}}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
-                            <input type="hidden" name="uptoken" value="{{encryptor('encrypt',$course->id)}}">
+                            <input type="hidden" name="uptoken" value="{{encryptor('encrypt', $course->id)}}">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-label">Status</label>
                                         <select class="form-control" name="status">
-                                            <option value="0" @if(old('status',$course->status)==0) selected
+                                            <option value="0" @if(old('status', $course->status)==0) selected
                                                 @endif>Pending</option>
-                                            <option value="1" @if(old('status',$course->status)==1) selected
+                                            <option value="1" @if(old('status', $course->status)==1) selected
                                                 @endif>Inactive</option>
-                                            <option value="2" @if(old('status',$course->status)==2) selected
+                                            <option value="2" @if(old('status', $course->status)==2) selected
                                                 @endif>Active</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Title</label>
-                                        <input type="text" class="form-control" name="courseTitle_en"
-                                            value="{{old('courseTitle_en',$course->title_en)}}">
-                                    </div>
-                                    @if($errors->has('courseTitle_en'))
-                                    <span class="text-danger"> {{ $errors->first('courseTitle_en') }}</span>
-                                    @endif
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">টাইটেল (বাংলায়)</label>
-                                        <input type="text" class="form-control" name="courseTitle_bn"
-                                            value="{{old('courseTitle_bn',$course->title_bn)}}">
+
+                                <div style="width: 100%">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Title</label>
+                                            <input type="text" class="form-control" name="courseTitle"
+                                                value="{{old('courseTitle', $course->title)}}">
+                                        </div>
+                                        @if($errors->has('courseTitle'))
+                                        <span class="text-danger"> {{ $errors->first('courseTitle') }}</span>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Description</label>
-                                        <textarea class="form-control"
-                                            name="courseDescription_en">{{old('courseDescription_en',$course->description_en)}}</textarea>
+
+                                <div style="width: 100%">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control"
+                                                name="courseDescription">{{old('courseDescription', $course->description)}}</textarea>
+                                        </div>
+                                        @if($errors->has('courseDescription'))
+                                        <span class="text-danger"> {{ $errors->first('courseDescription') }}</span>
+                                        @endif
                                     </div>
-                                    @if($errors->has('courseDescription_en'))
-                                    <span class="text-danger"> {{ $errors->first('courseDescription_en') }}</span>
-                                    @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">বিস্তারিত (বাংলায়)</label>
-                                        <textarea class="form-control"
-                                            name="courseDescription_bn">{{old('courseDescription_bn',$course->description_bn)}}</textarea>
-                                    </div>
-                                    @if($errors->has('courseDescription_bn'))
-                                    <span class="text-danger"> {{ $errors->first('courseDescription_bn') }}</span>
-                                    @endif
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Category</label>
@@ -109,6 +99,7 @@
                                     <span class="text-danger"> {{ $errors->first('categoryId') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Instructor</label>
@@ -116,7 +107,7 @@
                                             @forelse ($instructor as $i)
                                             <option value="{{$i->id}}" {{old('instructorId', $course->instructor_id) ==
                                                 $i->id?'selected':''}}>
-                                                {{$i->name_en}}</option>
+                                                {{$i->name}}</option>
                                             @empty
                                             <option value="">No Instructor Found</option>
                                             @endforelse
@@ -126,6 +117,7 @@
                                     <span class="text-danger"> {{ $errors->first('instructorId') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Type</label>
@@ -145,6 +137,7 @@
                                     <span class="text-danger"> {{ $errors->first('courseType') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Difficulty</label>
@@ -164,6 +157,7 @@
                                     <span class="text-danger"> {{ $errors->first('courseDifficulty') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Price</label>
@@ -174,6 +168,7 @@
                                     <span class="text-danger"> {{ $errors->first('coursePrice') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Old Price</label>
@@ -184,17 +179,19 @@
                                     <span class="text-danger"> {{ $errors->first('courseOldPrice') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Subscription Price</label>
-                                        <input type="number" class="form-control" name="subscription_price"
-                                            value="{{old('subscription_price')}}">
+                                        <input type="number" class="form-control" name="subscriptionPrice"
+                                            value="{{old('subscriptionPrice', $course->subscription_price)}}">
                                     </div>
-                                    @if($errors->has('subscription_price'))
-                                    <span class="text-danger"> {{ $errors->first('subscription_price',
-                                        $course->subscription_price) }}</span>
+                                    @if($errors->has('subscriptionPrice'))
+                                    <span class="text-danger"> {{ $errors->first('subscriptionPrice',
+                                        $course->subscriptionPrice) }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Start From</label>
@@ -206,6 +203,7 @@
                                         $course->start_from) }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Duration</label>
@@ -216,6 +214,7 @@
                                     <span class="text-danger"> {{ $errors->first('duration') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Number of Lesson</label>
@@ -226,26 +225,18 @@
                                     <span class="text-danger"> {{ $errors->first('lesson') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Prerequisites</label>
                                         <textarea class="form-control"
-                                            name="prerequisites_en">{{old('prerequisites_en',$course->prerequisites_en)}}</textarea>
+                                            name="prerequisites">{{old('prerequisites', $course->prerequisites)}}</textarea>
                                     </div>
-                                    @if($errors->has('prerequisites_en'))
-                                    <span class="text-danger"> {{ $errors->first('prerequisites_en') }}</span>
+                                    @if($errors->has('prerequisites'))
+                                    <span class="text-danger"> {{ $errors->first('prerequisites') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">পূর্বশর্ত (বাংলায়)</label>
-                                        <textarea class="form-control"
-                                            name="prerequisites_bn">{{old('prerequisites_bn',$course->prerequisites_bn)}}</textarea>
-                                    </div>
-                                    @if($errors->has('prerequisites_bn'))
-                                    <span class="text-danger"> {{ $errors->first('prerequisites_bn') }}</span>
-                                    @endif
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Course Code</label>
@@ -256,16 +247,18 @@
                                     <span class="text-danger"> {{ $errors->first('course_code') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Thumbnail Video URL</label>
                                         <input type="text" class="form-control" name="thumbnail_video"
-                                            value="{{old('thumbnail_video',$course->thumbnail_video)}}">
+                                            value="{{old('thumbnail_video', $course->thumbnail_video)}}">
                                     </div>
                                     @if($errors->has('thumbnail_video'))
                                     <span class="text-danger"> {{ $errors->first('thumbnail_video') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Course Tag</label>
@@ -284,20 +277,23 @@
                                     <span class="text-danger"> {{ $errors->first('tag') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <label class="form-label">Image</label>
                                     <div class="form-group fallback w-100">
                                         <input type="file" class="dropify" data-default-file="" name="image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <label class="form-label">Thumbnail Image</label>
                                     <div class="form-group fallback w-100">
                                         <input type="file" class="dropify" data-default-file="" name="thumbnail_image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                     <button type="submit" class="btn btn-light">Cancel</button>
                                 </div>
                             </div>
@@ -313,40 +309,25 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Title</label>
-                                        <input type="text" class="form-control" name="courseTitle_en"
-                                            value="{{old('courseTitle_en',$course->title_en)}}">
+                                        <input type="text" class="form-control" name="courseTitle"
+                                            value="{{old('courseTitle', $course->title)}}">
                                     </div>
-                                    @if($errors->has('courseTitle_en'))
-                                    <span class="text-danger"> {{ $errors->first('courseTitle_en') }}</span>
+                                    @if($errors->has('courseTitle'))
+                                    <span class="text-danger"> {{ $errors->first('courseTitle') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">টাইটেল (বাংলায়)</label>
-                                        <input type="text" class="form-control" name="courseTitle_bn"
-                                            value="{{old('courseTitle_bn',$course->title_bn)}}">
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Description</label>
                                         <textarea class="form-control"
-                                            name="courseDescription_en">{{old('courseDescription_en',$course->description_en)}}</textarea>
+                                            name="courseDescription">{{old('courseDescription', $course->description)}}</textarea>
                                     </div>
-                                    @if($errors->has('courseDescription_en'))
-                                    <span class="text-danger"> {{ $errors->first('courseDescription_en') }}</span>
+                                    @if($errors->has('courseDescription'))
+                                    <span class="text-danger"> {{ $errors->first('courseDescription') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">বিস্তারিত (বাংলায়)</label>
-                                        <textarea class="form-control"
-                                            name="courseDescription_bn">{{old('courseDescription_bn',$course->description_bn)}}</textarea>
-                                    </div>
-                                    @if($errors->has('courseDescription_bn'))
-                                    <span class="text-danger"> {{ $errors->first('courseDescription_bn') }}</span>
-                                    @endif
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Category</label>
@@ -364,6 +345,7 @@
                                     <span class="text-danger"> {{ $errors->first('categoryId') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Instructor</label>
@@ -371,7 +353,7 @@
                                             @forelse ($instructor as $i)
                                             <option value="{{$i->id}}" {{old('instructorId', $course->instructor_id) ==
                                                 $i->id?'selected':''}}>
-                                                {{$i->name_en}}</option>
+                                                {{$i->name}}</option>
                                             @empty
                                             <option value="">No Instructor Found</option>
                                             @endforelse
@@ -381,6 +363,7 @@
                                     <span class="text-danger"> {{ $errors->first('instructorId') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Type</label>
@@ -400,6 +383,7 @@
                                     <span class="text-danger"> {{ $errors->first('courseType') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Difficulty</label>
@@ -419,6 +403,7 @@
                                     <span class="text-danger"> {{ $errors->first('courseDifficulty') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Price</label>
@@ -429,6 +414,7 @@
                                     <span class="text-danger"> {{ $errors->first('coursePrice') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Old Price</label>
@@ -439,6 +425,7 @@
                                     <span class="text-danger"> {{ $errors->first('courseOldPrice') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Subscription Price</label>
@@ -450,6 +437,7 @@
                                         $course->subscription_price) }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Start From</label>
@@ -460,6 +448,7 @@
                                         $course->start_from) }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Duration</label>
@@ -469,6 +458,7 @@
                                     <span class="text-danger"> {{ $errors->first('duration') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Number of Lesson</label>
@@ -478,26 +468,18 @@
                                     <span class="text-danger"> {{ $errors->first('lesson') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Prerequisites</label>
                                         <textarea class="form-control"
-                                            name="prerequisites_en">{{old('prerequisites_en',$course->prerequisites_en)}}</textarea>
+                                            name="prerequisites">{{old('prerequisites', $course->prerequisites)}}</textarea>
                                     </div>
-                                    @if($errors->has('prerequisites_en'))
-                                    <span class="text-danger"> {{ $errors->first('prerequisites_en') }}</span>
+                                    @if($errors->has('prerequisites'))
+                                    <span class="text-danger"> {{ $errors->first('prerequisites') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">পূর্বশর্ত (বাংলায়)</label>
-                                        <textarea class="form-control"
-                                            name="prerequisites_bn">{{old('prerequisites_bn',$course->prerequisites_bn)}}</textarea>
-                                    </div>
-                                    @if($errors->has('prerequisites_bn'))
-                                    <span class="text-danger"> {{ $errors->first('prerequisites_bn') }}</span>
-                                    @endif
-                                </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Course Code</label>
@@ -508,6 +490,7 @@
                                     <span class="text-danger"> {{ $errors->first('course_code') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Thumbnail Video URL</label>
@@ -518,6 +501,7 @@
                                     <span class="text-danger"> {{ $errors->first('thumbnail_video') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Course Tag</label>
@@ -536,18 +520,21 @@
                                     <span class="text-danger"> {{ $errors->first('tag') }}</span>
                                     @endif
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <label class="form-label">Image</label>
                                     <div class="form-group fallback w-100">
                                         <input type="file" class="dropify" data-default-file="" name="image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <label class="form-label">Thumbnail Image</label>
                                     <div class="form-group fallback w-100">
                                         <input type="file" class="dropify" data-default-file="" name="thumbnail_image">
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="submit" class="btn btn-light">Cancel</button>
