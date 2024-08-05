@@ -9,13 +9,13 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Hi, welcome back!</h4>
-                    <p class="mb-0">Your business dashboard template</p>
+                    <h4>Paz Course</h4>
+                    <p class="mb-0">Admin dashboard</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Admin</a></li>
                     <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
                 </ol>
             </div>
@@ -240,16 +240,20 @@
                                         <div class="profile-about-me">
                                             <div class="pt-4 border-bottom-1 pb-4">
                                                 <h4 class="text-primary">About Me</h4>
-                                                <p>A wonderful serenity has taken possession of my entire soul, like
+                                                <p>
+                                                    A wonderful serenity has taken possession of my entire soul, like
                                                     these sweet mornings of spring which I enjoy with my whole heart. I
                                                     am alone, and feel the charm of existence was created for the
                                                     bliss of souls like mine.I am so happy, my dear friend, so absorbed
                                                     in the exquisite sense of mere tranquil existence, that I neglect my
-                                                    talents.</p>
-                                                <p>A collection of textile samples lay spread out on the table - Samsa
+                                                    talents.
+                                                </p>
+                                                {{-- <p>
+                                                    A collection of textile samples lay spread out on the table - Samsa
                                                     was a travelling salesman - and above it there hung a picture that
                                                     he had recently cut out of an illustrated magazine and housed
-                                                    in a nice, gilded frame.</p>
+                                                    in a nice, gilded frame.
+                                                </p> --}}
                                             </div>
                                         </div>
                                         <div class="profile-skills pt-2 border-bottom-1 pb-2">
@@ -268,13 +272,15 @@
                                                 class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Crypto</a>
                                         </div>
                                         <div class="profile-lang pt-5 border-bottom-1 pb-5">
-                                            <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()"
-                                                class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i>
-                                                English</a> <a href="javascript:void()"
-                                                class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-fr"></i>
-                                                French</a>
-                                            <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i
-                                                    class="flag-icon flag-icon-bd"></i> Bangla</a>
+                                            <h4 class="text-primary mb-4">Language</h4>
+                                            <a href="javascript:void()" class="text-muted pr-3 f-s-16">
+                                                <i class="flag-icon flag-icon-us"></i>
+                                                English
+                                            </a> 
+                                            <a href="javascript:void()" class="text-muted pr-3 f-s-16">
+                                                <i class="flag-icon flag-icon-fr"></i>
+                                                French
+                                            </a>
                                         </div>
                                         <div class="profile-personal-info">
                                             <h4 class="text-primary mb-4">Personal Information</h4>

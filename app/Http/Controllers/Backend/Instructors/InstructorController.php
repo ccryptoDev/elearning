@@ -112,22 +112,22 @@ class InstructorController extends Controller
             }
 
             if ($instructor->save()) {
-                $user = User::where('instructor_id', $instructor->id)->first();
-                $user->instructor_id = $instructor->id;
-                $user->name = $request->fullName;
-                $user->email = $request->emailAddress;
-                $user->phone = $request->contactNumber;
-                $user->role_id = $request->roleId;
-                $user->status = $request->status;
-                $user->password = Hash::make($request->password);
-                if (isset($imageName)) {
-                    $user->image = $imageName; // Save the image name in the users table
-                }
-                if ($user->save()) {
-                    DB::commit();
+                // $user = User::where('instructor_id', $instructor->id)->first();
+                // $user->instructor_id = $instructor->id;
+                // $user->name = $request->fullName;
+                // $user->email = $request->emailAddress;
+                // $user->phone = $request->contactNumber;
+                // $user->role_id = $request->roleId;
+                // $user->status = $request->status;
+                // $user->password = Hash::make($request->password);
+                // if (isset($imageName)) {
+                //     $user->image = $imageName; // Save the image name in the users table
+                // }
+                // if ($user->save()) {
+                //     DB::commit();
                     $this->notice::success('Successfully saved');
                     return redirect()->route('instructor.index');
-                }
+                // }
             }
             return redirect()->back()->withInput()->with('error', 'Please try again');
         } catch (Exception $e) {
