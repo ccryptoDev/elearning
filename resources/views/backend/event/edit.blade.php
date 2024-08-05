@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Edit Event')
+@section('title', 'Edit Article')
 
 @push('styles')
 <!-- Pick date -->
@@ -109,11 +109,14 @@
                                     </div>
                                 </div>
 
+                                @php
+                                    $date = old('date', $event->date ? \Illuminate\Support\Carbon::parse($event->date)->format('Y-m-d') : '');
+                                @endphp
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Date</label>
                                         <input type="date" class="form-control" name="date"
-                                            value="{{old('date', $event->date)}}">
+                                            value="{{old('date', $date)}}">
                                     </div>
                                     @if($errors->has('date'))
                                     <span class="text-danger"> {{$errors->first('date')}}</span>

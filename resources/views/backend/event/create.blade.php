@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Add Event')
+@section('title', 'Add Article')
 
 @push('styles')
 <!-- Pick date -->
@@ -19,14 +19,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Add Event</h4>
+                    <h4>Add Article</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('event.index')}}">Events</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('event.create')}}">Add Event</a>
+                    <li class="breadcrumb-item active"><a href="{{route('event.index')}}">Articles</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('event.create')}}">Add Article</a>
                     </li>
                 </ol>
             </div>
@@ -36,7 +36,7 @@
             <div class="col-xl-12 col-xxl-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Event Info</h5>
+                        <h5 class="card-title">Article Info</h5>
                     </div>
                     <div class="card-body">
                         <form action="{{route('event.store')}}" method="post" enctype="multipart/form-data">
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Event Title</label>
+                                        <label class="form-label">Article Title</label>
                                         <input type="text" class="form-control" name="title" value="{{old('title')}}">
                                     </div>
                                     @if($errors->has('title'))
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Location Type</label>
+                                        <label class="form-label">Type</label>
                                         <input type="text" class="form-control" name="location"
                                             value="{{old('location')}}">
                                     </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label class="form-label">Event Goal</label>
+                                        <label class="form-label">Article Goal</label>
                                         <textarea name="goal" class="form-control">{{old('goal')}}</textarea>
                                     </div>
                                     @if($errors->has('goal'))

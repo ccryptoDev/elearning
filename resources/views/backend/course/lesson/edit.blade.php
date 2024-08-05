@@ -58,7 +58,7 @@
                                             @forelse ($course as $c)
                                             <option value="{{$c->id}}" {{old('courseId', $lesson->course_id) ==
                                                 $c->id?'selected':''}}>
-                                                {{$c->title_en}}</option>
+                                                {{$c->title}}</option>
                                             @empty
                                             <option value="">No Course Lesson Lesson Found</option>
                                             @endforelse
