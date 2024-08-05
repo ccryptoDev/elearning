@@ -33,6 +33,11 @@ function currentUserId()
     return encryptor('decrypt', request()->session()->get('userId'));
 }
 
+function currentAdminUserId()
+{
+    return encryptor('decrypt', request()->session()->get('admin_userId'));
+}
+
 function fullAccess()
 {
     return encryptor('decrypt', request()->session()->get('accessType'));
