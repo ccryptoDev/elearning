@@ -34,22 +34,27 @@
                     </ul>
                 </div>
                 <div class="nav__buttons">
-                    @auth
-                        <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: inline;">
-                            @csrf
-                            <div id="logout-button" class="nav__profile"><span>להתנתק</span></div>
-                        </form>
-                        {{-- <a class="nav__profile" href="{{ route('logout') }}"><span>להתנתק</span></a> --}}
+                    @if(request()->session()->get('studentLogin'))
+                        <div class="dropdown user-image" id="imageDropdown">
+                            <a href="{{route('studentdashboard')}}" onclick="toggleDropdown(event)" class="logged">
+                                <img src="{{asset('uploads/students/'.request()->session()->get('image'))}}" alt="User Profile" />
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{{route('student_profile')}}">Profile</a>
+                                <a href="{{route('studentdashboard')}}">Dashboard</a>
+                                <a href="{{route('user.logout')}}" class="text-danger">Logout</a>
+                            </div>
+                        </div>
                         <input type="hidden" name="user_name" value="{{ auth()->user()->name }}">
                     @else
                         <a class="nav__profile" href="{{ route('user.login') }}"><span>התחברות</span></a>
                     @endauth
                     <a class="btn" href="">להתחיל</a>
-                    @if (Auth::check())
+                    {{-- @if (Auth::check())
                         <p>Authenticated</p>
                     @else
                         <p>Not Authenticated</p>
-                    @endif
+                    @endif --}}
                 </div>
                 <button class="nav__burger_link"></button>
                 <button class="nav__burger_close"></button>
