@@ -46,21 +46,27 @@ class AuthenticationController extends Controller
     public function signInCheck(SignInRequest $request)
     {
         try {
-            $user = User::where('phone', $request->username)->orWhere('email', $request->username)->first();
-            if ($user) {
-                if ($user->status == 1) {
-                    if (Hash::check($request->password, $user->password)) {
-                        $this->setSession($user);
-                        return redirect()->route('dashboard')->with('success', 'Successfully Logged In');
-                    } else
-                        return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
-                } else
-                    return redirect()->route('admin/login')->with('error', 'You are not an active user! Please contact to Authority');
-            } else
+            $user = User::where('phone', $request->username)
+                        ->orWhere('email', $request->username)
+                        ->first();
+            
+            if (!$user) {
                 return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
+            }
+            
+            if ($user->status != 1 || $user->role_id != 1) {
+                return redirect()->route('admin.login')->with('error', 'You are not an active admin!');
+            }
+    
+            if (!Hash::check($request->password, $user->password)) {
+                return redirect()->route('admin.login')->with('error', 'Username or Password is wrong!');
+            }
+    
+            $this->setSession($user);
+            return redirect()->route('dashboard')->with('success', 'Successfully Logged In');
         } catch (Exception $e) {
             // dd($e);
-            return redirect()->route('admin/login')->with('error', 'Username or Password is wrong!');
+            return redirect()->route('admin.login')->with('error', 'An unexpected error occurred. Please try again.');
         }
     }
 
@@ -68,15 +74,14 @@ class AuthenticationController extends Controller
     {
         return request()->session()->put(
             [
-                'userId' => encryptor('encrypt', $user->id),
-                'userName' => encryptor('encrypt', $user->name_en),
-                'emailAddress' => encryptor('encrypt', $user->email),
+                'admin_userId' => encryptor('encrypt', $user->id),
+                'admin_userName' => encryptor('encrypt', $user->name_en),
+                'admin_emailAddress' => encryptor('encrypt', $user->email),
                 'role_id' => encryptor('encrypt', $user->role_id),
                 'accessType' => encryptor('encrypt', $user->full_access),
                 'role' => encryptor('encrypt', $user->role->name),
                 'roleIdentitiy' => encryptor('encrypt', $user->role->identity),
-                'language' => encryptor('encrypt', $user->language),
-                'image' => $user->image ?? 'No Image Found',
+                'profile_image' => $user->image ?? 'No Image Found',
                 'instructorImage' => $user?->instructor->image ?? 'No instructorImage Found',
             ]
         );
@@ -84,7 +89,22 @@ class AuthenticationController extends Controller
 
     public function signOut()
     {
-        request()->session()->flush();
+        $keys = [
+            'admin_userId',
+            'admin_userName',
+            'admin_emailAddress',
+            'role_id',
+            'accessType',
+            'role',
+            'roleIdentitiy',
+            'profile_image',
+            'instructorImage',
+        ];
+        
+        foreach ($keys as $key) {
+            request()->session()->forget($key);
+        }
+
         return redirect('admin/login')->with('danger', 'Succesfully Logged Out');
     }
 

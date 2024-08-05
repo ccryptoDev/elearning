@@ -17,10 +17,10 @@ class checkAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::has('userId') || Session::has('userId') == null) {
+        if (!Session::has('admin_userId') || Session::has('admin_userId') == null) {
             return redirect()->route('admin.logout');
         } else {
-            $user = User::where('status', 1)->where('id', currentUserId())->first();
+            $user = User::where('status', 1)->where('id', currentAdminUserId())->first();
             if (!$user)
                 return redirect()->route('admin.logout'); 
             else

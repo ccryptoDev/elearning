@@ -20,7 +20,7 @@ class isSuperadmin
         if (!Session::has('userId') || Session::has('userId') == null || !Session::has('roleIdentity')) {
             return redirect()->route('logOut');
         } else {
-            $user = User::findOrFail(currentUserId());
+            $user = User::findOrFail(currentAdminUserId());
             app()->setLocale($user->language); //language
             if (!$user) {
                 return redirect()->route('logOut');

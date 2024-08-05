@@ -17,12 +17,15 @@ class checkRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::has('userId') || Session::has('userId') == null) {
-            return redirect()->route('admin/logout');
+        if (!Session::has('admin_userId') || Session::has('admin_userId') == null) {
+            return redirect()->route('admin.logout');
         } else {
-            $user = User::where('status', 1)->where('id', currentUserId())->first();
+            $user = User::where('status', 1)
+                    ->where('id', currentAdminUserId())
+                    ->where('role_id', 1)
+                    ->first();
             if (!$user) {
-                return redirect()->route('admin/logout');
+                return redirect()->route('admin.logout');
             } else if ($user->full_access == "1") {
                 return $next($request);
             } else {
