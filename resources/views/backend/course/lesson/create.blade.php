@@ -54,8 +54,8 @@
                                         <label class="form-label">Course</label>
                                         <select class="form-control" name="courseId">
                                             @forelse ($course as $c)
-                                            <option value="{{$c->id}}" {{old('courseId')==$c->id?'selected':''}}>
-                                                {{$c->title_en}}</option>
+                                            <option value="{{$c->id}}" {{old('courseId') == $c->id? 'selected' : ''}}>
+                                                {{$c->title}}</option>
                                             @empty
                                             <option value="">No Course Found</option>
                                             @endforelse
