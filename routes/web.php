@@ -115,6 +115,14 @@ Route::middleware(['checkstudent'])->group(function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });
+
+Route::get('/about',[HomeController::class, 'about'])->name('about');
+Route::get('/master',[HomeController::class, 'master']);
+Route::get('/master-practitioner',[HomeController::class, 'master_practitioner']);
+Route::get('/blog', [HomeController::class, 'blog']);
+Route::get('/article', [HomeController::class, 'article']);
+Route::get('/practitioner', [HomeController::class, 'practitioner']);
+
 Route::get('searchCourse', [SearchCourseController::class, 'index'])->name('searchCourse'); 
 Route::get('courseDetails/{id}', [course::class, 'frontShow'])->name('courseDetails');
 Route::get('watchCourse/{id}', [watchCourse::class, 'watchCourse'])->name('watchCourse');
@@ -137,9 +145,9 @@ Route::post('/payment/ssl/notify', [sslcz::class, 'notify'])->name('payment.ssl.
 Route::post('/payment/ssl/cancel', [sslcz::class, 'cancel'])->name('payment.ssl.cancel');
 
 
-Route::get('/about', function () {
-    return view('frontend.about');
-})->name('about');
+// Route::get('/about', function () {
+//     return view('frontend.about');
+// })->name('about');
 
 Route::get('/contact', function () {
     return view('frontend.contact');
