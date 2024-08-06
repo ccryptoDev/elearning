@@ -1,7 +1,10 @@
 @extends('frontend.layouts.app')
+@section('title', 'User Login')
+
 @section('custom-style')
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
 @endsection
+
 @section('content')
     <section class="login">
         <div class="container">

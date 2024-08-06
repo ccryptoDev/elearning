@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::paginate(10);
+        $data = User::where('role_id', '!=', 1)->paginate(10);
         return view('backend.user.index', compact('data'));
     }
 
