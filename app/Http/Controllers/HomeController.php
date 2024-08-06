@@ -16,14 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth')->except([
-        //     'about',
-        //     'master',
-        //     'blog',
-        //     'article',
-        //     'master_practitioner',
-        //     'practitioner'
-        // ]);
+        
     }
 
     public function index()
@@ -49,5 +42,35 @@ class HomeController extends Controller
             'frontend.home',
             compact('course', 'instructor', 'category', 'popularCourses', 'designCourses', 'developmentCourses', 'businessCourses', 'itCourses')
         );
+    }
+
+    public function about()
+    {
+        return view('frontend.pages.about');
+    }
+
+    public function master()
+    {
+        return view('frontend.pages.master');
+    }
+
+    public function blog()
+    {
+        return view('frontend.pages.blog');
+    }
+
+    public function master_practitioner()
+    {
+        return view('frontend.pages.master-practitioner');
+    }
+
+    public function practitioner()
+    {
+        return view('frontend.pages.practitioner');
+    }
+
+    public function article()
+    {
+        return view('frontend.pages.article');
     }
 }
