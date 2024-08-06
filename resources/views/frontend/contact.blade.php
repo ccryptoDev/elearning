@@ -44,10 +44,10 @@
                             <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
                             <p>Chikago, USA</p>
                         </li>
-                        <li>
+                        {{-- <li>
                             <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
                             <p>Mumbai, India</p>
-                        </li>
+                        </li> --}}
                         <li>
                             <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
                             <p>Rome, italy</p>
