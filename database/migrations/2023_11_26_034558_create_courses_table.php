@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en');
-            $table->string('title_bn')->nullable();
-            $table->text('description_en')->nullable();
-            $table->text('description_bn')->nullable();
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('course_category_id')->index();
             $table->unsignedBigInteger('instructor_id')->index();
             $table->enum('type', ['free', 'paid', 'subscription'])->default('paid');
@@ -26,15 +24,13 @@ return new class extends Migration
             $table->timestamp('start_from')->nullable();
             $table->integer('duration')->nullable();
             $table->integer('lesson')->nullable();
-            $table->text('prerequisites_en')->nullable();
-            $table->text('prerequisites_bn')->nullable();
+            $table->text('prerequisites')->nullable();
             $table->enum('difficulty', ['beginner', 'intermediate', 'advanced'])->nullable();
             $table->string('course_code')->nullable();
             $table->string('image')->nullable();
             $table->string('thumbnail_image')->nullable();
             $table->string('thumbnail_video')->nullable();
             $table->integer('status')->default(0)->comment('0 pending, 1 inactive, 2 active');
-            $table->string('language')->default('en');
             $table->timestamps();
             $table->softDeletes();
 
