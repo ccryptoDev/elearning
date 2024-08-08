@@ -48,8 +48,8 @@ use App\Http\Controllers\Students\sslController as sslcz;
 |
 */
 
-// Route::get('/register', [auth::class, 'signUpForm'])->name('register');
-// Route::post('/register', [auth::class, 'signUpStore'])->name('register.store');
+// Route::get('admin/register', [auth::class, 'signUpForm'])->name('register');
+// Route::post('admin/register', [auth::class, 'signUpStore'])->name('register.store');
 Route::get('admin/login', [auth::class, 'signInForm'])->name('admin.login');
 Route::post('admin/login', [auth::class, 'signInCheck'])->name('admin.check');
 Route::get('admin/logout', [auth::class, 'signOut'])->name('admin.logout');
