@@ -234,9 +234,7 @@
                             <span class="nav-text">Courses</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{route('courseCategory.index')}}"><i class="la la-list"></i>Course
-                                    Category</a>
-                            </li>
+                            <li><a href="{{route('courseCategory.index')}}"><i class="la la-list"></i>Course Category</a></li>
                             <li><a href="{{route('courseList')}}"><i class="las la-school"></i>Courses List</a></li>
                             <li><a href="{{route('course.index')}}"><i class="las la-book-open"></i>All Courses</a></li>
                             <li><a href="{{route('lesson.index')}}"><i class="las la-chalkboard"></i>Lessons</a></li>
@@ -284,8 +282,9 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{route('quiz.index')}}"><i class="las la-icons"></i>All Quizzes</a></li>
-                            <li><a href="{{route('question.index')}}"><i
-                                        class="las la-question-circle"></i>Questions</a></li>
+                            <li><a href="{{route('answer.index')}}"><i class="las la-icons"></i>Answers</a></li>
+                            <li><a href="{{route('question.index')}}"><i class="las la-question-circle"></i>Questions</a></li>
+                            <li><a href="{{route('option.index')}}"><i class="las la-question-circle"></i>Options</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
